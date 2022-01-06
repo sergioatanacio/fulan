@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/../sistem/PhpFunctionalLanguage.php';
+require __DIR__.'/PhpFunctionalLanguage.php';
 
 /**
  * Permite debuguear una variable en php.
