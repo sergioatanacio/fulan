@@ -165,7 +165,14 @@ function operation()
                 fn()=>$result,
                 function() use ($operator, $processedValues, $firstValue, $secondValue, $operation)
                 {
-                    def($sendEvalResult, eval('return '.$firstValue.' '.$operator.' '.$secondValue.';'));
+                    def($sendEvalResult,
+                        iffn(
+                            fn()=>is_array($firstValue) || is_array($secondValue),
+                            fn()=>eval('return json_decode(\''.json_encode($firstValue).'\', true) '.$operator.' json_decode(\''.json_encode($secondValue).'\', true);'),
+                            fn()=>eval('return '.$firstValue.' '.$operator.' '.$secondValue.';')
+                        )
+                    );
+                    #def($sendEvalResult, eval('return '.$firstValue.' '.$operator.' '.$secondValue.';'));
                     return $operation($operator, $processedValues, $sendEvalResult); 
                 }
             );
