@@ -69,6 +69,19 @@ function activeSession(string $direction = '')
     */
 }
 
+function active_session_get_boolean()
+{
+    return run(
+        function()
+            {
+                if(!isset($_SESSION)){ session_start();}
+                return (!isset($_SESSION['session'])) 
+                    ? false : $_SESSION['session'];
+            }
+    );
+}
+
+
 /**
  * La ejecución de esta función cierra la sesión de una persona.
  */
