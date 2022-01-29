@@ -75,8 +75,9 @@ function active_session_get_boolean()
         function()
             {
                 if(!isset($_SESSION)){ session_start();}
-                return (!isset($_SESSION['session'])) 
-                    ? false : $_SESSION['session'];
+                return 
+                (!isset($_SESSION['session']))  ? false : 
+                ($_SESSION['session'] !== true) ? false : true;
             }
     );
 }
