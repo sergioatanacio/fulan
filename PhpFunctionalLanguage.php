@@ -195,7 +195,11 @@ function operation()
 
 
 /**
- * Convierte el resultado de una consulta SQL en un array.
+ * Convierte el resultado de una consulta SQL en un array. Al parecer, los valores se traen en
+ * un array que está en indice 0, y dentro de ese array se crea, entonces, si no se pone ningún
+ * valor como segundo parámetro entonces se trae el valor, como por defecto el array 0, mientras 
+ * que si se pone true, se trae el array tal cual. O tambien puede ser que si el array solo tiene
+ * un elemento, se trae todo lo demás.
  */
 if(! function_exists('assocQuery'))
 {
@@ -210,7 +214,7 @@ if(! function_exists('assocQuery'))
                 {
                     $result[] = ($index != null) ? $elements[$index] : $elements;
                 }
-                return $result;
+                return (count($result) < 2) ? $result[0]: $result;
             }),
             fn()=>null,
         );
