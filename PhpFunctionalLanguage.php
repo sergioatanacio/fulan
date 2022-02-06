@@ -135,7 +135,7 @@ function operation(string $operator, array $values, $result = null)
             return operation($operator, popArray($values), $sendEvalResult);
     }
 }*/
-function operation()
+function o()
 {
     def($args, array_reverse(func_get_args()));
 
@@ -180,12 +180,17 @@ function operation()
     );
 
     return iffn(
-        fn()=>count($args) !== 2,
+        fn()=>count($args) > 2,
         fn()=>$operation(lastElement($args), popArray($args)),
         fn()=>$operation(lastElement($args), array_reverse($args[0]))
     );
 
     #return $operation(lastElement($args), popArray($args));
+}
+
+function operation()
+{
+    return o(func_get_args());
 }
 
 
