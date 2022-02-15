@@ -214,7 +214,7 @@ if(! function_exists('assocQuery'))
                 {
                     $result[] = ($index != null) ? $elements[$index] : $elements;
                 }
-                return (count($result) < 2) ? $result[0]: $result;
+                return $result;
             }),
             fn()=>null,
         );
